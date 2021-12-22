@@ -23,18 +23,17 @@ function TodoItem() {
 
 function TodoInput() {
 	const placeholder = "What needs to be done?";
-	// TODO input highlight outline 회색으로 만들기
+	// TODO add enter event listener
 
 	return (
 		<ItemLayout>
 			<Checkbox size="lg" colorScheme="gray" icon={<ChevronDownIcon />}></Checkbox>
-			<Input placeholder={placeholder} type="text" />
+			<Input placeholder={placeholder} type="text" variant="unstyled" />
 		</ItemLayout>
 	);
 }
 
 function TodoList() {
-	// TODO container shade 추가
 	// TODO footer 추가
 
 	return (
