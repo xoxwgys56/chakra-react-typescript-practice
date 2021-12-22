@@ -38,7 +38,7 @@ function TodoList() {
 	// TODO footer 추가
 
 	return (
-		<Container bg="white" w="80%" paddingTop="25px" paddingBottom="25px">
+		<Container bg="white" w="80%" paddingTop="25px" paddingBottom="25px" boxShadow="lg">
 			<VStack>
 				<TodoInput />
 				<Divider w="100%" paddingTop="15px" />
