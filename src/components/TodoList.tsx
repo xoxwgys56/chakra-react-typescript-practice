@@ -24,10 +24,15 @@ interface ItemProps {
  * @constructor
  */
 function ItemLayout({ children }: ItemLayoutProps) {
+	const paddingSize = "12.5px";
+
 	return (
-		<HStack w="100%" spacing={15}>
-			{children}
-		</HStack>
+		<>
+			<HStack w="100%" spacing={15} paddingBottom={paddingSize} paddingTop={paddingSize}>
+				{children}
+			</HStack>
+			<Divider w="100%" />
+		</>
 	);
 }
 
@@ -53,7 +58,6 @@ function TodoItem({ fontConfig }: ItemProps) {
 function TodoInput({ fontConfig }: ItemProps) {
 	const placeholder = "What needs to be done?";
 	// TODO add enter event listener
-	// TODO increase font size
 
 	/**
 	 * @desc
@@ -91,7 +95,7 @@ function TodoList() {
 		<Container bg="white" w="80%" paddingTop="25px" paddingBottom="25px" boxShadow="lg">
 			<VStack>
 				<TodoInput fontConfig={fontConfig} />
-				<Divider w="100%" paddingTop="15px" />
+				{/*<Divider w="100%" paddingTop="15px" />*/}
 				<TodoItem fontConfig={fontConfig} />
 			</VStack>
 		</Container>
