@@ -6,6 +6,16 @@ interface ItemLayoutProps {
 	children?: React.ReactNode;
 }
 
+type FontConfig = {
+	size: string;
+	color: string;
+	weight: number;
+};
+
+interface ItemProps {
+	fontConfig: FontConfig;
+}
+
 /**
  * ## ItemLayout
  * `todo`에 대한 레이아웃
@@ -21,13 +31,15 @@ function ItemLayout({ children }: ItemLayoutProps) {
 	);
 }
 
-function TodoItem() {
+function TodoItem({ fontConfig }: ItemProps) {
 	// TODO hover "x" 표시 우측에 띄우기
 	// TODO checkbox circle 만들기
 	return (
 		<ItemLayout>
 			<Checkbox size="lg" colorScheme="gray" icon={<ChevronDownIcon />}></Checkbox>
-			<Box>test</Box>
+			<Box fontSize={fontConfig.size} color={fontConfig.color} fontWeight={fontConfig.weight}>
+				test
+			</Box>
 		</ItemLayout>
 	);
 }
@@ -38,7 +50,7 @@ function TodoItem() {
  *
  * @constructor
  */
-function TodoInput() {
+function TodoInput({ fontConfig }: ItemProps) {
 	const placeholder = "What needs to be done?";
 	// TODO add enter event listener
 	// TODO increase font size
@@ -55,22 +67,32 @@ function TodoInput() {
 				colorScheme="gray"
 				// icon={<ChevronDownIcon />}
 			/>
-			<Input placeholder={placeholder} type="text" variant="unstyled" />
+			<Input
+				placeholder={placeholder}
+				type="text"
+				variant="unstyled"
+				fontSize={fontConfig.size}
+				color={fontConfig.color}
+				fontWeight={fontConfig.weight}
+			/>
 		</ItemLayout>
 	);
 }
 
 function TodoList() {
 	// TODO footer 추가
+	const fontConfig = {
+		size: "1.5rem",
+		color: "gray.600",
+		weight: 300,
+	} as FontConfig;
 
 	return (
 		<Container bg="white" w="80%" paddingTop="25px" paddingBottom="25px" boxShadow="lg">
 			<VStack>
-				<TodoInput />
+				<TodoInput fontConfig={fontConfig} />
 				<Divider w="100%" paddingTop="15px" />
-				<TodoItem />
-				<TodoItem />
-				<TodoItem />
+				<TodoItem fontConfig={fontConfig} />
 			</VStack>
 		</Container>
 	);
