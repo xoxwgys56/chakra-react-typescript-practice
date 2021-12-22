@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "typedoc": "npx typedoc src/index.tsx"
+    "typedoc": "npx typedoc --option ./typedoc.json"
   },
   "eslintConfig": {
     "extends": "react-app"
