@@ -21,6 +21,7 @@ export default function Item({ fontConfig, itemValue = "test" }: ItemProps) {
 					fontWeight={fontConfig.weight}
 					textAlign="left"
 				>
+					{/*TODO need to test about long long text*/}
 					{itemValue}
 				</Text>
 			</Box>
