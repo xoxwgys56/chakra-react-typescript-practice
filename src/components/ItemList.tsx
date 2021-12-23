@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Container, VStack } from "@chakra-ui/react";
 import ItemListFooter from "./ItemListFooter";
 import ItemInput from "./ItemInput";
@@ -12,12 +12,17 @@ function ItemList() {
 		weight: 300,
 	} as FontConfig;
 
-	const leftCount = 0;
+	const [leftCount, setLeftCount] = useState(0);
+	const createNewItem = useCallback((e) => {
+		if (e.key === "Enter") {
+			// TODO create new item
+		}
+	}, []);
 
 	return (
 		<Container bg="white" w="80%" paddingTop="25px" paddingBottom="25px" boxShadow="lg">
 			<VStack>
-				<ItemInput fontConfig={fontConfig} />
+				<ItemInput fontConfig={fontConfig} createNewItem={createNewItem} />
 				<Item fontConfig={fontConfig} />
 				<Item fontConfig={fontConfig} />
 				<Item fontConfig={fontConfig} />
