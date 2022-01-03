@@ -4,21 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b32c95fe-1bd1-487b-970a-fea3e982f825" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TodoList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/theme.ts" afterDir="false" />
+    <list default="true" id="b32c95fe-1bd1-487b-970a-fea3e982f825" name="Changes" comment="chore: add props &amp; state&#10;&#10;- ItemInputProps&#10;- TodoState">
+      <change afterPath="$PROJECT_DIR$/src/constants.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Layout/ItemLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout/ItemLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ItemInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ItemList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -38,6 +32,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -54,8 +56,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -79,8 +83,105 @@
       <updated>1640064251838</updated>
       <workItem from="1640064255936" duration="313000" />
       <workItem from="1640064582971" duration="2839000" />
-      <workItem from="1640073710359" duration="1813000" />
+      <workItem from="1640073710359" duration="3192000" />
+      <workItem from="1640147013032" duration="21907000" />
+      <workItem from="1640213333194" duration="79000" />
+      <workItem from="1640215347560" duration="1000" />
+      <workItem from="1640220047631" duration="13212000" />
+      <workItem from="1640753094968" duration="9681000" />
     </task>
+    <task id="LOCAL-00001" summary="chore: add padding&#10;&#10;top and bottom">
+      <created>1640183056506</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1640183056506</updated>
+    </task>
+    <task id="LOCAL-00002" summary="refactor: change function name&#10;&#10;TodoList to ItemList">
+      <created>1640183096201</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1640183096201</updated>
+    </task>
+    <task id="LOCAL-00003" summary="chore: update css, use absolute position&#10;&#10;for ignore ColorModeSwitcher">
+      <created>1640183254216</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1640183254216</updated>
+    </task>
+    <task id="LOCAL-00004" summary="chore: remove checkbox&#10;&#10;이제 `itemLayout`에서 `checkbox` 소유">
+      <created>1640188405151</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1640188405151</updated>
+    </task>
+    <task id="LOCAL-00005" summary="chore: remove checkbox">
+      <created>1640188437756</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1640188437756</updated>
+    </task>
+    <task id="LOCAL-00006" summary="chore: update css and add checkbox&#10;&#10;use justifyContent: space-between">
+      <created>1640188479665</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1640188479665</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactor: split code&#10;&#10;.tsx 파일로 코드 분리">
+      <created>1640188520624</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1640188520624</updated>
+    </task>
+    <task id="LOCAL-00008" summary="docs: add todo">
+      <created>1640188533183</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1640188533183</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: add file&#10;&#10;this script has interfaces only">
+      <created>1640188555002</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1640188555002</updated>
+    </task>
+    <task id="LOCAL-00010" summary="docs: add todo">
+      <created>1640188563525</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1640188563525</updated>
+    </task>
+    <task id="LOCAL-00011" summary="docs: add todo">
+      <created>1640188592297</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1640188592297</updated>
+    </task>
+    <task id="LOCAL-00012" summary="docs: add todo">
+      <created>1640309134757</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1640309134757</updated>
+    </task>
+    <task id="LOCAL-00013" summary="chore: add props &amp; state&#10;&#10;- ItemInputProps&#10;- TodoState">
+      <created>1640309219746</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1640309219746</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,6 +197,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="chore: add padding&#10;&#10;top and bottom" />
+    <MESSAGE value="refactor: change function name&#10;&#10;TodoList to ItemList" />
+    <MESSAGE value="chore: update css, use absolute position&#10;&#10;for ignore ColorModeSwitcher" />
+    <MESSAGE value="chore: add x button by mouse event" />
+    <MESSAGE value="chore: remove checkbox&#10;&#10;이제 `itemLayout`에서 `checkbox` 소유" />
+    <MESSAGE value="chore: remove checkbox" />
+    <MESSAGE value="chore: update css and add checkbox&#10;&#10;use justifyContent: space-between" />
+    <MESSAGE value="refactor: split code&#10;&#10;.tsx 파일로 코드 분리" />
+    <MESSAGE value="feat: add file&#10;&#10;this script has interfaces only" />
+    <MESSAGE value="docs: add todo" />
+    <MESSAGE value="chore: add props &amp; state&#10;&#10;- ItemInputProps&#10;- TodoState" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add props &amp; state&#10;&#10;- ItemInputProps&#10;- TodoState" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
