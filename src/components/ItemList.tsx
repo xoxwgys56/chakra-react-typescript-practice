@@ -1,35 +1,16 @@
-import React, { useCallback, useReducer } from "react";
+import React from "react";
 import { Container, VStack } from "@chakra-ui/react";
 import ItemListFooter from "./ItemListFooter";
 import ItemInput from "./ItemInput";
 import Item from "./Item";
-import { FontConfig, TodoState, TodoAction, ItemInfo } from "../interfaces";
+import { FontConfig } from "../interfaces";
+import { reducer, initialState, TodoState, TodoAction, ActionType } from "./reducer";
 
-function reducer(state: TodoState, action: TodoAction) {
-	switch (action.type) {
-		case "CREATE_TODO":
-			return {
-				...state,
-				todoList: state.todoList.concat({
-					text: state.currentInput,
-					isCompleted: false,
-				} as ItemInfo),
-				currentInput: "",
-			};
-		case "REMOVE_TODO":
-			return { ...state, todoList: state.todoList.filter((todo) => todo.text !== action.itemText) };
-		case "UPDATE_INPUT_VALUE":
-			return { ...state, currentInput: action.inputValue };
-		default:
-			throw new Error(`Given "${action}" type is not defined.`);
-	}
-}
-
-const initialState = {
-	todoList: [],
-	currentInput: "",
-};
-
+/**
+ * 아래 구현에서 모두 `React.`으로 접근했다. 파라미터 이름을 *IDE*에서 보기 위해서이다.
+ * `useCallback`같은 형식으로 가져올 경우. `*.min.*`파일에서 선언부를 가져오기 때문에 매개변수가 `a`, `b`같은 형태로 나온다.
+ * @constructor
+ */
 function ItemList() {
 	const fontConfig = {
 		size: "1.5rem",
@@ -37,21 +18,28 @@ function ItemList() {
 		weight: 300,
 	} as FontConfig;
 
-	// TODO implement reducer for manage state
-	const [state, dispatch] = useReducer(reducer, initialState);
-	const createNewItem = useCallback((e) => {
+	const [state, dispatch] = React.useReducer<React.Reducer<TodoState, TodoAction>>(
+		reducer,
+		initialState
+	);
+	const createNewItem = React.useCallback((e) => {
 		if (e.key === "Enter") {
-			dispatch({ type: "CREATE_TODO", itemText: e.target.value });
+			dispatch({ type: ActionType.CREATE_ITEM });
 			e.target.value = "";
 		}
 	}, []);
-	const updateInputValue = (inputValue: string) => {
-		dispatch({ type: "UPDATE_INPUT_VALUE", inputValue: inputValue });
-	};
-	const removeItem = (itemText: string): undefined => {
-		dispatch({ type: "REMOVE_TODO", itemText: itemText });
+	const updateInputValue = React.useCallback((inputValue: string) => {
+		dispatch({ type: ActionType.UPDATE_INPUT_VALUE, inputValue: inputValue });
+	}, []);
+	const removeItem = React.useCallback((itemId: string): undefined => {
+		dispatch({ type: ActionType.REMOVE_ITEM, itemId: itemId });
 		return undefined;
-	};
+	}, []);
+	const completeItem = React.useCallback((itemId: string) => {
+		dispatch({ type: ActionType.COMPLETE_ITEM, itemId: itemId });
+	}, []);
+
+	// TODO useEffect or useMemo something for performance
 	const leftCount = state.todoList.filter((item) => !item.isCompleted).length;
 
 	return (
@@ -63,14 +51,8 @@ function ItemList() {
 					updateInputValue={updateInputValue}
 				/>
 				{state.todoList.map((itemInfo, key) => (
-					<Item
-						fontConfig={fontConfig}
-						itemText={itemInfo.text}
-						removeItem={removeItem}
-						key={key}
-					/>
+					<Item fontConfig={fontConfig} itemInfo={itemInfo} toggleItem={completeItem} key={key} />
 				))}
-				{/*<Item fontConfig={fontConfig} />*/}
 				<ItemListFooter leftCount={leftCount} />
 			</VStack>
 		</Container>
