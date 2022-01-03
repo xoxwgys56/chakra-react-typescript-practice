@@ -7,7 +7,6 @@ import Header from "./components/Header";
 import ItemList from "./components/ItemList";
 
 // TODO change website title
-// TODO add gh-pages for hosting on github page.
 
 export const App = () => (
 	<ChakraProvider theme={theme}>
