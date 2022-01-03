@@ -3,7 +3,7 @@ import ItemLayout from "../Layout/ItemLayout";
 import { ItemProps } from "../interfaces";
 import { useCallback, useState } from "react";
 
-export default function Item({ fontConfig, itemValue = "test" }: ItemProps) {
+export default function Item({ fontConfig, itemText = "test", removeItem }: ItemProps) {
 	// TODO checkbox circle 만들기
 	// TODO change font cancel line when item completed
 	// TODO add event listener when click checkbox
@@ -22,10 +22,18 @@ export default function Item({ fontConfig, itemValue = "test" }: ItemProps) {
 					textAlign="left"
 				>
 					{/*TODO need to test about long long text*/}
-					{itemValue}
+					{itemText}
 				</Text>
 			</Box>
-			{isHover ? <CloseButton justifySelf="end" _focus={{ border: 0 }} /> : null}
+			{isHover ? (
+				<CloseButton
+					justifySelf="end"
+					_focus={{ border: 0 }}
+					onClick={() => {
+						removeItem(itemText);
+					}}
+				/>
+			) : null}
 		</ItemLayout>
 	);
 }
