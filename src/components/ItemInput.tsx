@@ -1,7 +1,6 @@
 import { Input } from "@chakra-ui/react";
 import ItemLayout from "../Layout/ItemLayout";
 import { ItemInputProps } from "../interfaces";
-import { useState } from "react";
 
 /**
  * ## TodoInput
@@ -9,9 +8,8 @@ import { useState } from "react";
  *
  * @constructor
  */
-export default function ItemInput({ fontConfig, createNewItem }: ItemInputProps) {
+export default function ItemInput({ fontConfig, createNewItem, updateInputValue }: ItemInputProps) {
 	const placeholder = "What needs to be done?";
-	const [inputValue, setInputValue] = useState("");
 
 	// TODO add enter event listener
 
@@ -32,7 +30,7 @@ export default function ItemInput({ fontConfig, createNewItem }: ItemInputProps)
 				onKeyDown={(e) => {
 					createNewItem(e);
 				}}
-				onChange={(e) => setInputValue(e.target.value)}
+				onChange={(e) => updateInputValue(e.target.value)}
 			/>
 		</ItemLayout>
 	);
