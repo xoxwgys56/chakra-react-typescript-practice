@@ -36,7 +36,7 @@ function ItemList() {
 		return undefined;
 	}, []);
 	const completeItem = React.useCallback((itemId: string) => {
-		dispatch({ type: ActionType.COMPLETE_ITEM, itemId: itemId });
+		dispatch({ type: ActionType.TOGGLE_COMPLETE, itemId: itemId });
 	}, []);
 
 	// TODO useEffect or useMemo something for performance
@@ -51,8 +51,16 @@ function ItemList() {
 					updateInputValue={updateInputValue}
 				/>
 				{state.todoList.map((itemInfo, key) => (
-					<Item fontConfig={fontConfig} itemInfo={itemInfo} toggleItem={completeItem} key={key} />
+					<Item
+						fontConfig={fontConfig}
+						itemInfo={itemInfo}
+						toggleItem={completeItem}
+						removeItem={removeItem}
+						key={key}
+					/>
 				))}
+				<Item fontConfig={fontConfig} toggleItem={completeItem} removeItem={removeItem} />
+				{/*TODO assign key to footer*/}
 				<ItemListFooter leftCount={leftCount} />
 			</VStack>
 		</Container>

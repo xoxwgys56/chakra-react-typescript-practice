@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, MouseEventHandler } from "react";
+import { BaseSyntheticEvent } from "react";
 
 export interface FontConfig {
 	size: string;
@@ -16,21 +16,14 @@ export interface ItemInputProps {
 export interface ItemProps {
 	fontConfig: FontConfig;
 	itemText?: string;
+	itemInfo?: ItemInfo;
 	isCompleted?: boolean;
-	removeItem: (itemText: string) => void;
+	toggleItem: (itemId: string) => void;
+	removeItem: (itemId: string) => void;
 }
 
 export type ItemInfo = {
 	text: string;
 	isCompleted: boolean;
+	id: string;
 };
-
-export type TodoState = {
-	todoList: ItemInfo[];
-	currentInput: string;
-};
-
-export type TodoAction =
-	| { type: "CREATE_TODO"; itemText: string }
-	| { type: "REMOVE_TODO"; itemText: string }
-	| { type: "UPDATE_INPUT_VALUE"; inputValue: string };
