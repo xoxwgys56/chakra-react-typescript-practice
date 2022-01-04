@@ -12,6 +12,8 @@ export default function ItemInput({ fontConfig, createNewItem, updateInputValue 
 	const placeholder = "What needs to be done?";
 
 	// TODO add enter event listener
+	// TODO block input when it is empty
+	// TODO add checkbox event makes checked every items
 
 	/**
 	 * @desc
@@ -27,7 +29,7 @@ export default function ItemInput({ fontConfig, createNewItem, updateInputValue 
 				fontSize={fontConfig.size}
 				color={fontConfig.color}
 				fontWeight={fontConfig.weight}
-				onKeyDown={(e) => {
+				onKeyPress={(e) => {
 					createNewItem(e);
 				}}
 				onChange={(e) => updateInputValue(e.target.value)}
