@@ -4,6 +4,8 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"
+    //    TODO if allow below line, webstorm tell you failed load '@prettier'
+    //    "plugin:@prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
