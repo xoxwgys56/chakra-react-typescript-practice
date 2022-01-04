@@ -2,6 +2,8 @@ import { Button, ButtonGroup, Center, Grid } from "@chakra-ui/react";
 
 export default function ItemListFooter({ leftCount = 0 }: { leftCount: number }) {
 	// TODO change send value to use `createTheme` for `themeProvider`
+	// TODO remove clear complete text when has no completed item
+
 	const fontConfig = {
 		size: "1rem",
 		color: "gray.900",
@@ -32,8 +34,9 @@ export default function ItemListFooter({ leftCount = 0 }: { leftCount: number })
 			<Center justifySelf="start">{leftCount} items left</Center>
 			<ButtonGroup>
 				{/*TODO apply button style by current state*/}
-				{buttonState.map((button) => (
+				{buttonState.map((button, index) => (
 					<Button
+						key={index}
 						fontSize={fontConfig.size}
 						fontWeight={fontConfig.weight}
 						variant={button.state ? "outline" : "ghost"}
