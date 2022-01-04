@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "author": "Daniel Kim",
   "description": "copycat about todo web application",
+  "homepage": "https://xoxwgys56.github.io/chakra-react-typescript-practice/",
   "license": "MIT",
   "dependencies": {
     "@chakra-ui/icons": "^1.1.1",
@@ -27,12 +28,13 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
+    "start:build": "yarn serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "typedoc": "npx typedoc --option ./typedoc.json",
-    "deploy": "npx gh-pages -d ./build"
+    "doc": "yarn typedoc --options ./typedoc.json",
+    "deploy": "yarn gh-pages -d ./build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -53,7 +55,9 @@
     "@types/uuid": "^8.3.3",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
+    "gh-pages": "^3.2.3",
     "prettier": "^2.5.1",
+    "serve": "^13.0.2",
     "typedoc": "^0.22.10"
   },
   "packageManager": "yarn@3.1.1"
