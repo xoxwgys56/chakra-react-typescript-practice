@@ -60,5 +60,7 @@
     "serve": "^13.0.2",
     "typedoc": "^0.22.10"
   },
-  "packageManager": "yarn@3.1.1"
+  "packageManager": "yarn@3.1.1",
+  "main": "index.js",
+  "repository": "https://github.com/xoxwgys56/chakra-react-typescript-practice.git"
 }
