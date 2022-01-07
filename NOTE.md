@@ -4,6 +4,7 @@ personal note about this project
 
 ## in progress
 
+- [ ] add `dev` branch and `release` branch for divide.
 - [ ] add [winston logger](https://github.com/winstonjs/winston)
     - current logger is `console.log`
 - [ ] test code
