@@ -30,7 +30,14 @@ export default function ItemInput({ fontConfig, createNewItem, updateInputValue 
 				color={fontConfig.color}
 				fontWeight={fontConfig.weight}
 				onKeyPress={(e) => {
-					createNewItem(e);
+					if (e.key === "Enter") {
+						if (e.currentTarget.value === "") {
+							console.warn("Can not add empty text item.");
+							return;
+						}
+						createNewItem();
+						e.currentTarget.value = "";
+					}
 				}}
 				onChange={(e) => updateInputValue(e.target.value)}
 			/>

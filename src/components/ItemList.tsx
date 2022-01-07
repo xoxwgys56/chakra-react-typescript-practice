@@ -22,12 +22,7 @@ function ItemList() {
 		reducer,
 		initialState
 	);
-	const createNewItem = React.useCallback((e) => {
-		if (e.key === "Enter") {
-			dispatch({ type: ActionType.CREATE_ITEM });
-			e.target.value = "";
-		}
-	}, []);
+	const createNewItem = React.useCallback(() => dispatch({ type: ActionType.CREATE_ITEM }), []);
 	const updateInputValue = React.useCallback((inputValue: string) => {
 		dispatch({ type: ActionType.UPDATE_INPUT_VALUE, inputValue: inputValue });
 	}, []);
@@ -59,7 +54,6 @@ function ItemList() {
 						key={key}
 					/>
 				))}
-				<Item fontConfig={fontConfig} toggleItem={completeItem} removeItem={removeItem} />
 				{/*TODO assign key to footer*/}
 				<ItemListFooter leftCount={leftCount} />
 			</VStack>
