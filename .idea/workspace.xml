@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b32c95fe-1bd1-487b-970a-fea3e982f825" name="Changes" comment="chore: add props &amp; state&#10;&#10;- ItemInputProps&#10;- TodoState">
-      <change afterPath="$PROJECT_DIR$/src/constants.ts" afterDir="false" />
+    <list default="true" id="b32c95fe-1bd1-487b-970a-fea3e982f825" name="Changes" comment="chore: move detect &quot;Enter&quot; key logic to input component&#10;&#10;also add warning log when input empty string">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NOTE.md" beforeDir="false" afterPath="$PROJECT_DIR$/NOTE.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Layout/ItemLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout/ItemLayout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ItemInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ItemList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +58,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.linters.configure.manually.selectedeslint" value="true" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -69,7 +67,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.remoteExternalTools" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -88,7 +86,9 @@
       <workItem from="1640213333194" duration="79000" />
       <workItem from="1640215347560" duration="1000" />
       <workItem from="1640220047631" duration="13212000" />
-      <workItem from="1640753094968" duration="9681000" />
+      <workItem from="1640753094968" duration="26801000" />
+      <workItem from="1641271362780" duration="434000" />
+      <workItem from="1641272042705" duration="14890000" />
     </task>
     <task id="LOCAL-00001" summary="chore: add padding&#10;&#10;top and bottom">
       <created>1640183056506</created>
@@ -181,7 +181,154 @@
       <option name="project" value="LOCAL" />
       <updated>1640309219746</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="chore: add onclick remove item&#10;&#10;added function has issue. when click item remove all same text item">
+      <created>1641187003769</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1641187003769</updated>
+    </task>
+    <task id="LOCAL-00015" summary="chore: implement reducer&#10;&#10;remove `useState` which do not needed">
+      <created>1641187062702</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1641187062702</updated>
+    </task>
+    <task id="LOCAL-00016" summary="chore: update `updateInputValue` function">
+      <created>1641187131950</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1641187131950</updated>
+    </task>
+    <task id="LOCAL-00017" summary="docs: update project">
+      <created>1641187149990</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1641187149990</updated>
+    </task>
+    <task id="LOCAL-00018" summary="chore: apply useReducer&#10;&#10;also apply useCallback">
+      <created>1641214165468</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1641214165468</updated>
+    </task>
+    <task id="LOCAL-00019" summary="chore: add uuid&#10;&#10;for assign id to each todo item">
+      <created>1641220765207</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1641220765207</updated>
+    </task>
+    <task id="LOCAL-00020" summary="refactor: split reducer&#10;&#10;to single file">
+      <created>1641220811800</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1641220811800</updated>
+    </task>
+    <task id="LOCAL-00021" summary="docs: add NOTE.md&#10;&#10;for personal note">
+      <created>1641228142083</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1641228142083</updated>
+    </task>
+    <task id="LOCAL-00022" summary="chore: update lintrc&#10;&#10;add prettier extension for handling indent issue">
+      <created>1641264171559</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1641264171559</updated>
+    </task>
+    <task id="LOCAL-00023" summary="docs: note fun issue&#10;&#10;conflict prettier with eslint">
+      <created>1641264474205</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1641264474205</updated>
+    </task>
+    <task id="LOCAL-00024" summary="chore: update lint extension&#10;&#10;add comment about error">
+      <created>1641272168417</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1641272168417</updated>
+    </task>
+    <task id="LOCAL-00025" summary="docs: update package content">
+      <created>1641272290550</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1641272290550</updated>
+    </task>
+    <task id="LOCAL-00026" summary="chore: update gitignore&#10;&#10;include yarn, node, react, macos, git, webstorm">
+      <created>1641272676475</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1641272676475</updated>
+    </task>
+    <task id="LOCAL-00027" summary="chore: update yarn version to 3">
+      <created>1641272892011</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1641272892011</updated>
+    </task>
+    <task id="LOCAL-00028" summary="chore: update item with its layout&#10;&#10;add interact with checkbox">
+      <created>1641272969568</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1641272969568</updated>
+    </task>
+    <task id="LOCAL-00029" summary="chore: fix function and variable name&#10;&#10;more readable">
+      <created>1641273037357</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1641273037357</updated>
+    </task>
+    <task id="LOCAL-00030" summary="chore: add react-icons dep&#10;&#10;when upgrade yarn version to 3. ide said to me. need this dependency.">
+      <created>1641273116735</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1641273116735</updated>
+    </task>
+    <task id="LOCAL-00031" summary="chore: add homepage url&#10;&#10;also change script command name">
+      <created>1641275998286</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1641275998286</updated>
+    </task>
+    <task id="LOCAL-00032" summary="chore: add key to each button">
+      <created>1641284771318</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1641284771318</updated>
+    </task>
+    <task id="LOCAL-00033" summary="chore: change 'dev' command to 'start'&#10;&#10;for use IDE webstorm">
+      <created>1641521964869</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1641521964869</updated>
+    </task>
+    <task id="LOCAL-00034" summary="chore: move detect &quot;Enter&quot; key logic to input component&#10;&#10;also add warning log when input empty string">
+      <created>1641531424139</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1641531424139</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,18 +347,32 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="chore: add padding&#10;&#10;top and bottom" />
-    <MESSAGE value="refactor: change function name&#10;&#10;TodoList to ItemList" />
-    <MESSAGE value="chore: update css, use absolute position&#10;&#10;for ignore ColorModeSwitcher" />
-    <MESSAGE value="chore: add x button by mouse event" />
-    <MESSAGE value="chore: remove checkbox&#10;&#10;이제 `itemLayout`에서 `checkbox` 소유" />
-    <MESSAGE value="chore: remove checkbox" />
-    <MESSAGE value="chore: update css and add checkbox&#10;&#10;use justifyContent: space-between" />
     <MESSAGE value="refactor: split code&#10;&#10;.tsx 파일로 코드 분리" />
     <MESSAGE value="feat: add file&#10;&#10;this script has interfaces only" />
     <MESSAGE value="docs: add todo" />
     <MESSAGE value="chore: add props &amp; state&#10;&#10;- ItemInputProps&#10;- TodoState" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: add props &amp; state&#10;&#10;- ItemInputProps&#10;- TodoState" />
+    <MESSAGE value="chore: add onclick remove item&#10;&#10;added function has issue. when click item remove all same text item" />
+    <MESSAGE value="chore: implement reducer&#10;&#10;remove `useState` which do not needed" />
+    <MESSAGE value="chore: update `updateInputValue` function" />
+    <MESSAGE value="docs: update project" />
+    <MESSAGE value="chore: apply useReducer&#10;&#10;also apply useCallback" />
+    <MESSAGE value="chore: add uuid&#10;&#10;for assign id to each todo item" />
+    <MESSAGE value="refactor: split reducer&#10;&#10;to single file" />
+    <MESSAGE value="docs: add NOTE.md&#10;&#10;for personal note" />
+    <MESSAGE value="chore: update lintrc&#10;&#10;add prettier extension for handling indent issue" />
+    <MESSAGE value="docs: note fun issue&#10;&#10;conflict prettier with eslint" />
+    <MESSAGE value="chore: update lint extension&#10;&#10;add comment about error" />
+    <MESSAGE value="docs: update package content" />
+    <MESSAGE value="chore: update gitignore&#10;&#10;include yarn, node, react, macos, git, webstorm" />
+    <MESSAGE value="chore: update yarn version to 3" />
+    <MESSAGE value="chore: update item with its layout&#10;&#10;add interact with checkbox" />
+    <MESSAGE value="chore: fix function and variable name&#10;&#10;more readable" />
+    <MESSAGE value="chore: add react-icons dep&#10;&#10;when upgrade yarn version to 3. ide said to me. need this dependency." />
+    <MESSAGE value="chore: add homepage url&#10;&#10;also change script command name" />
+    <MESSAGE value="chore: add key to each button" />
+    <MESSAGE value="chore: change 'dev' command to 'start'&#10;&#10;for use IDE webstorm" />
+    <MESSAGE value="chore: move detect &quot;Enter&quot; key logic to input component&#10;&#10;also add warning log when input empty string" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: move detect &quot;Enter&quot; key logic to input component&#10;&#10;also add warning log when input empty string" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
