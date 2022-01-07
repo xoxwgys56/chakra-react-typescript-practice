@@ -1,34 +1,39 @@
-import { Box, CloseButton, Text } from "@chakra-ui/react";
+import { Box, Checkbox, CloseButton, HStack, Text } from "@chakra-ui/react";
 import ItemLayout from "../Layout/ItemLayout";
-import { ItemProps } from "../interfaces";
+import { ItemTextProps, ItemCheckBoxProps } from "../interfaces";
 import { useCallback, useState } from "react";
 
-export default function Item({
-	fontConfig,
-	toggleItem,
-	removeItem,
-	itemInfo = { text: "undefined", isCompleted: true, id: "undefined" },
-}: ItemProps) {
-	// TODO checkbox circle 만들기
-	// TODO change font cancel line when item completed
+const defaultItemInfo = { text: "undefined", isCompleted: true, id: "undefined" };
 
-	const [isHover, setIsHover] = useState(false);
-	const onMouseIn = useCallback(() => setIsHover(true), []);
-	const onMouseOut = useCallback(() => setIsHover(false), []);
+function ItemCheckBox({ toggleItem, itemInfo = defaultItemInfo }: ItemCheckBoxProps) {
+	// TODO research emotion or useMemo something like optimizing for storing component style value
 	const onCheckListener = useCallback(() => {
 		console.log(itemInfo.id);
 		toggleItem(itemInfo.id);
 	}, []);
 
+	return (
+		<Checkbox
+			size="lg"
+			colorScheme="gray"
+			// backgroundColor="gray"
+			// color="gray"
+			// border={1}
+			paddingRight={15}
+			onChange={onCheckListener}
+		/>
+	);
+}
+
+function ItemText({ fontConfig, removeItem, itemInfo = defaultItemInfo }: ItemTextProps) {
+	const [isHover, setIsHover] = useState(false);
+	const onMouseIn = useCallback(() => setIsHover(true), []);
+	const onMouseOut = useCallback(() => setIsHover(false), []);
 	const decoration = itemInfo.isCompleted ? "line-through" : "none";
 
 	return (
-		<ItemLayout
-			onMouseEnter={onMouseIn}
-			onMouseLeave={onMouseOut}
-			onCheckListener={onCheckListener}
-		>
-			<Box w="100%">
+		<>
+			<Box w="100%" onMouseEnter={onMouseIn} onMouseLeave={onMouseOut}>
 				<Text
 					fontSize={fontConfig.size}
 					color={fontConfig.color}
@@ -50,6 +55,22 @@ export default function Item({
 					color="black"
 				/>
 			) : null}
-		</ItemLayout>
+		</>
 	);
+}
+
+export default function Item({
+	fontConfig,
+	toggleItem,
+	removeItem,
+	itemInfo = { text: "undefined", isCompleted: true, id: "undefined" },
+}: ItemTextProps & ItemCheckBoxProps) {
+	// TODO checkbox circle 만들기
+	// TODO change font cancel line when item completed
+	// TODO add useMemo something like optimizing.
+
+	const itemText = <ItemText fontConfig={fontConfig} removeItem={removeItem} itemInfo={itemInfo} />;
+	const itemCheckBox = <ItemCheckBox toggleItem={toggleItem} />;
+
+	return <ItemLayout Item={itemText} CheckBox={itemCheckBox} />;
 }

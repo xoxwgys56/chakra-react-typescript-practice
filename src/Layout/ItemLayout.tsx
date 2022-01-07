@@ -1,12 +1,6 @@
 import React, { ReactElement } from "react";
-import { Checkbox, Divider, HStack } from "@chakra-ui/react";
-
-interface ItemLayoutProps {
-	children: React.ReactNode;
-	onMouseEnter?: () => void;
-	onMouseLeave?: () => void;
-	onCheckListener?: () => void;
-}
+import { Box, Checkbox, Divider, HStack } from "@chakra-ui/react";
+import { ItemLayoutProps } from "../interfaces";
 
 /**
  * ## ItemLayout
@@ -16,24 +10,18 @@ interface ItemLayoutProps {
  * @return 레이아웃으로 래핑된 자식 엘레먼트
  * @constructor
  */
-export default function ItemLayout({
-	children,
-	onMouseEnter,
-	onMouseLeave,
-	onCheckListener,
-}: ItemLayoutProps): ReactElement {
+export default function ItemLayout({ children, onCheckListener }: ItemLayoutProps): ReactElement {
 	const paddingSize = "12.5px";
+	// TODO check effect delayed
 
 	return (
-		<>
-			<HStack
-				w="100%"
-				justifyContent="space-between"
-				paddingBottom={paddingSize}
-				paddingTop={paddingSize}
-				onMouseEnter={() => (onMouseEnter ? onMouseEnter() : null)}
-				onMouseLeave={() => (onMouseLeave ? onMouseLeave() : null)}
-			>
+		<Box
+			w="100%"
+			justifyContent="space-between"
+			paddingBottom={paddingSize}
+			paddingTop={paddingSize}
+		>
+			<HStack>
 				<Checkbox
 					size="lg"
 					colorScheme="gray"
@@ -46,6 +34,6 @@ export default function ItemLayout({
 				{children}
 			</HStack>
 			<Divider w="100%" />
-		</>
+		</Box>
 	);
 }
