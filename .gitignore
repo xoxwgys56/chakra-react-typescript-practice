@@ -312,3 +312,6 @@ fabric.properties
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/yarn,node,react,macos,git,webstorm
+
+# build
+/build
