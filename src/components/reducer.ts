@@ -21,13 +21,15 @@ export enum ActionType {
 	TOGGLE_COMPLETE = "TOGGLE_COMPLETE",
 	REMOVE_ITEM = "REMOVE_ITEM",
 	UPDATE_INPUT_VALUE = "UPDATE_INPUT_VALUE",
+	COMPLETE_ALL_ITEMS = "COMPLETE_ALL_ITEMS",
 }
 
 export type TodoAction =
 	| { type: ActionType.CREATE_ITEM }
 	| { type: ActionType.REMOVE_ITEM; itemId: string }
 	| { type: ActionType.UPDATE_INPUT_VALUE; inputValue: string }
-	| { type: ActionType.TOGGLE_COMPLETE; itemId: string };
+	| { type: ActionType.TOGGLE_COMPLETE; itemId: string }
+	| { type: ActionType.COMPLETE_ALL_ITEMS };
 
 export function reducer(state: TodoState = initialState, action: TodoAction): TodoState {
 	// TODO add remove completed item action
@@ -52,6 +54,16 @@ export function reducer(state: TodoState = initialState, action: TodoAction): To
 				if (item.id === action.itemId) item.isCompleted = !item.isCompleted;
 			});
 			return state;
+		case ActionType.COMPLETE_ALL_ITEMS:
+			return {
+				...state,
+				todoList: state.todoList.map((item) => {
+					return {
+						...item,
+						isCompleted: false,
+					};
+				}),
+			};
 		default:
 			throw new Error(`Given "${action}" type is not defined.`);
 	}
