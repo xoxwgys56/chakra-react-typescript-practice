@@ -1,5 +1,3 @@
-import React, { BaseSyntheticEvent } from "react";
-
 export interface FontConfig {
 	size: string;
 	color: string;
@@ -7,19 +5,8 @@ export interface FontConfig {
 }
 
 export interface ItemLayoutProps {
-	children?: React.ReactNode;
-	onMouseEnter?: () => void;
-	onMouseLeave?: () => void;
-	onCheckListener?: () => void;
-	CheckBox: React.ReactNode;
-	Item: React.ReactNode;
-}
-
-export interface ItemInputProps {
-	fontConfig: FontConfig;
-	createNewItem: () => void;
-	updateInputValue: (inputValue: string) => void;
-	// dispatch: (state: TodoState, action: TodoAction) => React.Dispatch<TodoAction>;
+	CheckBox: () => JSX.Element;
+	Item: () => JSX.Element;
 }
 
 export interface ItemCheckBoxProps {
@@ -39,3 +26,13 @@ export type ItemInfo = {
 	isCompleted: boolean;
 	id: string;
 };
+
+export interface ItemInputBoxProps {
+	fontConfig: FontConfig;
+	createNewItem: () => void;
+	updateInputValue: (inputValue: string) => void;
+}
+
+export interface ItemInputCheckBoxProps {
+	onCheckItems: () => void;
+}

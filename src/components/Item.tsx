@@ -1,12 +1,13 @@
-import { Box, Checkbox, CloseButton, HStack, Text } from "@chakra-ui/react";
+import { useCallback, useState } from "react";
+import { Box, Checkbox, CloseButton, Text } from "@chakra-ui/react";
 import ItemLayout from "../Layout/ItemLayout";
 import { ItemTextProps, ItemCheckBoxProps } from "../interfaces";
-import { useCallback, useState } from "react";
 
 const defaultItemInfo = { text: "undefined", isCompleted: true, id: "undefined" };
 
 function ItemCheckBox({ toggleItem, itemInfo = defaultItemInfo }: ItemCheckBoxProps) {
 	// TODO research emotion or useMemo something like optimizing for storing component style value
+	// TODO split style data
 	const onCheckListener = useCallback(() => {
 		console.log(itemInfo.id);
 		toggleItem(itemInfo.id);
@@ -69,8 +70,11 @@ export default function Item({
 	// TODO change font cancel line when item completed
 	// TODO add useMemo something like optimizing.
 
-	const itemText = <ItemText fontConfig={fontConfig} removeItem={removeItem} itemInfo={itemInfo} />;
-	const itemCheckBox = <ItemCheckBox toggleItem={toggleItem} />;
+	const itemText = useCallback(
+		() => <ItemText fontConfig={fontConfig} removeItem={removeItem} itemInfo={itemInfo} />,
+		[]
+	);
+	const itemCheckBox = useCallback(() => <ItemCheckBox toggleItem={toggleItem} />, []);
 
 	return <ItemLayout Item={itemText} CheckBox={itemCheckBox} />;
 }
