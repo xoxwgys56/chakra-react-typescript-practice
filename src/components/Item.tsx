@@ -1,17 +1,16 @@
 import { useCallback, useState } from "react";
-import { Box, Checkbox, CloseButton, Text } from "@chakra-ui/react";
-import ItemLayout from "../Layout/ItemLayout";
+import { Box, Checkbox, CloseButton, Divider, HStack, Text } from "@chakra-ui/react";
 import { ItemTextProps, ItemCheckBoxProps } from "../interfaces";
 
-const defaultItemInfo = { text: "undefined", isCompleted: true, id: "undefined" };
-
-function ItemCheckBox({ toggleItem, itemInfo = defaultItemInfo }: ItemCheckBoxProps) {
+function ItemCheckBox({ toggleItem, itemInfo }: ItemCheckBoxProps) {
 	// TODO research emotion or useMemo something like optimizing for storing component style value
 	// TODO split style data
-	const onCheckListener = useCallback(() => {
-		console.log(itemInfo.id);
-		toggleItem(itemInfo.id);
-	}, []);
+	if (!itemInfo) {
+		console.error("Got invalid item info.");
+		return null;
+	}
+
+	const onCheckListener = useCallback(() => toggleItem(itemInfo.id), []);
 
 	return (
 		<Checkbox
@@ -26,37 +25,38 @@ function ItemCheckBox({ toggleItem, itemInfo = defaultItemInfo }: ItemCheckBoxPr
 	);
 }
 
-function ItemText({ fontConfig, removeItem, itemInfo = defaultItemInfo }: ItemTextProps) {
-	const [isHover, setIsHover] = useState(false);
-	const onMouseIn = useCallback(() => setIsHover(true), []);
-	const onMouseOut = useCallback(() => setIsHover(false), []);
-	const decoration = itemInfo.isCompleted ? "line-through" : "none";
-
-	return (
-		<>
-			<Box w="100%" onMouseEnter={onMouseIn} onMouseLeave={onMouseOut}>
+function ItemText({ fontConfig, itemInfo }: ItemTextProps) {
+	if (!itemInfo) {
+		console.error("Got invalid item info.");
+		return (
+			<Box w="100%">
 				<Text
 					fontSize={fontConfig.size}
 					color={fontConfig.color}
 					fontWeight={fontConfig.weight}
 					textAlign="left"
-					decoration={decoration}
 				>
-					{/*TODO need to test about long long text*/}
-					{itemInfo.text}
+					Invalid text
 				</Text>
 			</Box>
-			{isHover ? (
-				<CloseButton
-					justifySelf="end"
-					_focus={{ border: 0 }}
-					onClick={() => {
-						removeItem(itemInfo.id);
-					}}
-					color="black"
-				/>
-			) : null}
-		</>
+		);
+	}
+
+	const decoration = itemInfo.isCompleted ? "line-through" : "none";
+
+	return (
+		<Box w="100%">
+			<Text
+				fontSize={fontConfig.size}
+				color={fontConfig.color}
+				fontWeight={fontConfig.weight}
+				textAlign="left"
+				decoration={decoration}
+			>
+				{/*TODO need to test about long long text*/}
+				{itemInfo.text}
+			</Text>
+		</Box>
 	);
 }
 
@@ -70,11 +70,35 @@ export default function Item({
 	// TODO change font cancel line when item completed
 	// TODO add useMemo something like optimizing.
 
-	const itemText = useCallback(
-		() => <ItemText fontConfig={fontConfig} removeItem={removeItem} itemInfo={itemInfo} />,
-		[]
-	);
-	const itemCheckBox = useCallback(() => <ItemCheckBox toggleItem={toggleItem} />, []);
+	const paddingSize = "12.5px";
+	const [isHover, setIsHover] = useState(false);
+	const onMouseIn = useCallback(() => setIsHover(true), []);
+	const onMouseOut = useCallback(() => setIsHover(false), []);
 
-	return <ItemLayout Item={itemText} CheckBox={itemCheckBox} />;
+	return (
+		<Box
+			w="100%"
+			justifyContent="space-between"
+			paddingBottom={paddingSize}
+			paddingTop={paddingSize}
+			onMouseEnter={onMouseIn}
+			onMouseLeave={onMouseOut}
+		>
+			<HStack>
+				<ItemCheckBox toggleItem={toggleItem} itemInfo={itemInfo} />
+				<ItemText fontConfig={fontConfig} removeItem={removeItem} itemInfo={itemInfo} />
+				{isHover ? (
+					<CloseButton
+						justifySelf="end"
+						_focus={{ border: 0 }}
+						onClick={() => {
+							removeItem(itemInfo.id);
+						}}
+						color="black"
+					/>
+				) : null}
+			</HStack>
+			<Divider w="100%" />
+		</Box>
+	);
 }
