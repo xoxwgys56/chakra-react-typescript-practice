@@ -1,8 +1,16 @@
 import { Checkbox, Input, Box, HStack, Divider } from "@chakra-ui/react";
 import { ItemInputBoxProps, ItemInputCheckBoxProps } from "../interfaces";
 
-function ItemInputCheckBox({ onCheckItems }: ItemInputCheckBoxProps) {
-	return <Checkbox size="lg" colorScheme="gray" paddingRight={15} onChange={onCheckItems} />;
+function ItemInputCheckBox({ onCheckItems, isAllChecked }: ItemInputCheckBoxProps) {
+	return (
+		<Checkbox
+			size="lg"
+			colorScheme="gray"
+			paddingRight={15}
+			onChange={onCheckItems}
+			isChecked={isAllChecked}
+		/>
+	);
 }
 
 function ItemInputBox({ fontConfig, createNewItem, updateInputValue }: ItemInputBoxProps) {
@@ -42,10 +50,9 @@ export default function ItemInput({
 	createNewItem,
 	updateInputValue,
 	onCheckItems,
+	isAllChecked,
 }: ItemInputBoxProps & ItemInputCheckBoxProps) {
-	// TODO add enter event listener
-	// TODO block input when it is empty
-	// TODO add checkbox event makes checked every items
+	// TODO remove checkbox when no items.
 
 	/**
 	 * @desc
@@ -62,7 +69,7 @@ export default function ItemInput({
 			paddingTop={paddingSize}
 		>
 			<HStack>
-				<ItemInputCheckBox onCheckItems={onCheckItems} />
+				<ItemInputCheckBox onCheckItems={onCheckItems} isAllChecked={isAllChecked} />
 				<ItemInputBox
 					fontConfig={fontConfig}
 					createNewItem={createNewItem}

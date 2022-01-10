@@ -33,9 +33,16 @@ function ItemList() {
 	const completeItem = React.useCallback((itemId: string) => {
 		dispatch({ type: ActionType.TOGGLE_COMPLETE, itemId: itemId });
 	}, []);
+	const completeAllItems = React.useCallback(
+		() => dispatch({ type: ActionType.COMPLETE_ALL_ITEMS }),
+		[]
+	);
 
 	// TODO useEffect or useMemo something for performance
-	const leftCount = state.todoList.filter((item) => !item.isCompleted).length;
+	const leftCount = React.useMemo(
+		() => state.todoList.filter((item) => !item.isCompleted).length,
+		[state]
+	);
 
 	return (
 		<Container bg="white" w="80%" paddingTop="25px" paddingBottom="25px" boxShadow="lg">
@@ -44,6 +51,8 @@ function ItemList() {
 					fontConfig={fontConfig}
 					createNewItem={createNewItem}
 					updateInputValue={updateInputValue}
+					onCheckItems={completeAllItems}
+					isAllChecked={leftCount == 0 && state.todoList.length > 0}
 				/>
 				{state.todoList.map((itemInfo, key) => (
 					<Item

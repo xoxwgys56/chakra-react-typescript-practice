@@ -9,7 +9,6 @@ function ItemCheckBox({ toggleItem, itemInfo }: ItemCheckBoxProps) {
 		console.error("Got invalid item info.");
 		return null;
 	}
-
 	const onCheckListener = useCallback(() => toggleItem(itemInfo.id), []);
 
 	return (
@@ -21,6 +20,7 @@ function ItemCheckBox({ toggleItem, itemInfo }: ItemCheckBoxProps) {
 			// border={1}
 			paddingRight={15}
 			onChange={onCheckListener}
+			isChecked={itemInfo.isCompleted}
 		/>
 	);
 }

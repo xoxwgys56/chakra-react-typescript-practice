@@ -35,4 +35,5 @@ export interface ItemInputBoxProps {
 
 export interface ItemInputCheckBoxProps {
 	onCheckItems: () => void;
+	isAllChecked: boolean;
 }
