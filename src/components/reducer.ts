@@ -50,10 +50,18 @@ export function reducer(state: TodoState = initialState, action: TodoAction): To
 		case ActionType.UPDATE_INPUT_VALUE:
 			return { ...state, currentInput: action.inputValue };
 		case ActionType.TOGGLE_COMPLETE:
-			state.todoList.map((item) => {
-				if (item.id === action.itemId) item.isCompleted = !item.isCompleted;
-			});
-			return state;
+			return {
+				...state,
+				todoList: state.todoList.map((item) => {
+					console.log(item, action.itemId);
+					if (action.itemId === item.id)
+						return {
+							...item,
+							isCompleted: !item.isCompleted,
+						};
+					else return item;
+				}),
+			};
 		case ActionType.COMPLETE_ALL_ITEMS:
 			return {
 				...state,
