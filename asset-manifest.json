@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/chakra-react-typescript-practice/static/css/main.7280cc3d.css",
-    "main.js": "/chakra-react-typescript-practice/static/js/main.df7a981a.js",
+    "main.js": "/chakra-react-typescript-practice/static/js/main.f347bdda.js",
     "static/js/377.b47bf449.chunk.js": "/chakra-react-typescript-practice/static/js/377.b47bf449.chunk.js",
     "static/media/roboto-all-400-normal.woff": "/chakra-react-typescript-practice/static/media/roboto-all-400-normal.376ea5d93f71583052f6.woff",
     "static/media/roboto-latin-400-normal.woff2": "/chakra-react-typescript-practice/static/media/roboto-latin-400-normal.4673b4537a84c7f7a130.woff2",
@@ -13,11 +13,11 @@
     "static/media/roboto-greek-ext-400-normal.woff2": "/chakra-react-typescript-practice/static/media/roboto-greek-ext-400-normal.bb723e8458c9c653e505.woff2",
     "index.html": "/chakra-react-typescript-practice/index.html",
     "main.7280cc3d.css.map": "/chakra-react-typescript-practice/static/css/main.7280cc3d.css.map",
-    "main.df7a981a.js.map": "/chakra-react-typescript-practice/static/js/main.df7a981a.js.map",
+    "main.f347bdda.js.map": "/chakra-react-typescript-practice/static/js/main.f347bdda.js.map",
     "377.b47bf449.chunk.js.map": "/chakra-react-typescript-practice/static/js/377.b47bf449.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7280cc3d.css",
-    "static/js/main.df7a981a.js"
+    "static/js/main.f347bdda.js"
   ]
 }
