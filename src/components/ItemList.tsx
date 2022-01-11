@@ -4,7 +4,8 @@ import ItemListFooter from "./ItemListFooter";
 import ItemInput from "./ItemInput";
 import Item from "./Item";
 import { FontConfig } from "../interfaces";
-import { reducer, initialState, TodoState, TodoAction, ActionType } from "./reducer";
+import { reducer, initialState, TodoState, TodoAction } from "./reducer";
+import { ActionType, ItemVisibilityStatus } from "../constants";
 
 /**
  * 아래 구현에서 모두 `React.`으로 접근했다. 파라미터 이름을 *IDE*에서 보기 위해서이다.
@@ -37,12 +38,26 @@ function ItemList() {
 		() => dispatch({ type: ActionType.COMPLETE_ALL_ITEMS }),
 		[]
 	);
+	const setItemVisibilityStatus = React.useCallback(
+		(status: ItemVisibilityStatus) =>
+			dispatch({
+				type: ActionType.SET_ITEM_VISIBILITY_STATUS,
+				visibilityStatus: status,
+			}),
+		[state.visibilityStatus]
+	);
 
-	// TODO useEffect or useMemo something for performance
 	const leftCount = React.useMemo(
 		() => state.todoList.filter((item) => !item.isCompleted).length,
 		[state]
 	);
+	const itemList = React.useMemo(() => {
+		if (state.visibilityStatus === ItemVisibilityStatus.COMPLETED_ONLY)
+			return state.todoList.filter((item) => item.isCompleted);
+		else if (state.visibilityStatus === ItemVisibilityStatus.ACTIVE_ONLY)
+			return state.todoList.filter((item) => !item.isCompleted);
+		else return state.todoList;
+	}, [state.visibilityStatus, state.todoList]);
 
 	return (
 		<Container bg="white" w="80%" paddingTop="25px" paddingBottom="25px" boxShadow="lg">
@@ -54,7 +69,7 @@ function ItemList() {
 					onCheckItems={completeAllItems}
 					isAllChecked={leftCount == 0 && state.todoList.length > 0}
 				/>
-				{state.todoList.map((itemInfo, key) => (
+				{itemList.map((itemInfo, key) => (
 					<Item
 						fontConfig={fontConfig}
 						itemInfo={itemInfo}
@@ -63,8 +78,11 @@ function ItemList() {
 						key={key}
 					/>
 				))}
-				{/*TODO assign key to footer*/}
-				<ItemListFooter leftCount={leftCount} />
+				<ItemListFooter
+					leftCount={leftCount}
+					updateVisibilityStatus={setItemVisibilityStatus}
+					itemVisibilityStatus={state.visibilityStatus}
+				/>
 			</VStack>
 		</Container>
 	);

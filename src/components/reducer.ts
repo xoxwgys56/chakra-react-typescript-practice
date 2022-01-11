@@ -1,39 +1,31 @@
 import { v4 as uuidv4 } from "uuid";
 import { ItemInfo } from "../interfaces";
+import { ActionType, ItemVisibilityStatus } from "../constants";
 
 export type TodoState = {
 	todoList: ItemInfo[];
 	currentInput: string;
+	isCompletedAll: boolean;
+	visibilityStatus: ItemVisibilityStatus;
 };
 
-interface ITodoState {
-	todoList: ItemInfo[];
-	currentInput: string;
-}
-
-export const initialState: ITodoState = {
+export const initialState: TodoState = {
 	todoList: [],
 	currentInput: "",
+	isCompletedAll: false,
+	visibilityStatus: ItemVisibilityStatus.ALL,
 };
-
-export enum ActionType {
-	CREATE_ITEM = "CREATE_ITEM",
-	TOGGLE_COMPLETE = "TOGGLE_COMPLETE",
-	REMOVE_ITEM = "REMOVE_ITEM",
-	UPDATE_INPUT_VALUE = "UPDATE_INPUT_VALUE",
-	COMPLETE_ALL_ITEMS = "COMPLETE_ALL_ITEMS",
-}
 
 export type TodoAction =
 	| { type: ActionType.CREATE_ITEM }
 	| { type: ActionType.REMOVE_ITEM; itemId: string }
 	| { type: ActionType.UPDATE_INPUT_VALUE; inputValue: string }
 	| { type: ActionType.TOGGLE_COMPLETE; itemId: string }
-	| { type: ActionType.COMPLETE_ALL_ITEMS };
+	| { type: ActionType.COMPLETE_ALL_ITEMS }
+	| { type: ActionType.REMOVE_ALL_COMPLETED_ITEMS }
+	| { type: ActionType.SET_ITEM_VISIBILITY_STATUS; visibilityStatus: ItemVisibilityStatus };
 
 export function reducer(state: TodoState = initialState, action: TodoAction): TodoState {
-	// TODO add remove completed item action
-
 	switch (action.type) {
 		case ActionType.CREATE_ITEM:
 			return {
@@ -53,7 +45,7 @@ export function reducer(state: TodoState = initialState, action: TodoAction): To
 			return {
 				...state,
 				todoList: state.todoList.map((item) => {
-					console.log(item, action.itemId);
+					console.log(item.text, item.id === action.itemId);
 					if (action.itemId === item.id)
 						return {
 							...item,
@@ -65,12 +57,23 @@ export function reducer(state: TodoState = initialState, action: TodoAction): To
 		case ActionType.COMPLETE_ALL_ITEMS:
 			return {
 				...state,
+				isCompletedAll: !state.isCompletedAll,
 				todoList: state.todoList.map((item) => {
 					return {
 						...item,
-						isCompleted: false,
+						isCompleted: !state.isCompletedAll,
 					};
 				}),
+			};
+		case ActionType.REMOVE_ALL_COMPLETED_ITEMS:
+			return {
+				...state,
+				todoList: state.todoList.filter((item) => !item.isCompleted),
+			};
+		case ActionType.SET_ITEM_VISIBILITY_STATUS:
+			return {
+				...state,
+				visibilityStatus: action.visibilityStatus,
 			};
 		default:
 			throw new Error(`Given "${action}" type is not defined.`);

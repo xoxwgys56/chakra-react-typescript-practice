@@ -1,3 +1,5 @@
+import { ItemVisibilityStatus } from "./constants";
+
 export interface FontConfig {
 	size: string;
 	color: string;
@@ -36,4 +38,15 @@ export interface ItemInputBoxProps {
 export interface ItemInputCheckBoxProps {
 	onCheckItems: () => void;
 	isAllChecked: boolean;
+}
+
+export interface ItemFooterProps {
+	leftCount: number;
+	updateVisibilityStatus: (status: ItemVisibilityStatus) => void;
+	itemVisibilityStatus: ItemVisibilityStatus;
+}
+
+export interface ItemVisibilityButton {
+	name: string;
+	state: ItemVisibilityStatus;
 }
