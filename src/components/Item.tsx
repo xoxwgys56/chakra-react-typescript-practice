@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Box, Checkbox, CloseButton, Divider, HStack, Text } from "@chakra-ui/react";
 import { ItemTextProps, ItemCheckBoxProps } from "../interfaces";
 
@@ -9,7 +9,9 @@ function ItemCheckBox({ toggleItem, itemInfo }: ItemCheckBoxProps) {
 		console.error("Got invalid item info.");
 		return null;
 	}
-	const onCheckListener = useCallback(() => toggleItem(itemInfo.id), []);
+
+	// NOTE must assign deps explicitly.
+	const onCheckListener = React.useCallback(() => toggleItem(itemInfo.id), [itemInfo]);
 
 	return (
 		<Checkbox
