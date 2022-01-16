@@ -31,7 +31,7 @@ function ItemList() {
 		dispatch({ type: ActionType.REMOVE_ITEM, itemId: itemId });
 		return undefined;
 	}, []);
-	const completeItem = React.useCallback((itemId: string) => {
+	const toggleItem = React.useCallback((itemId: string) => {
 		dispatch({ type: ActionType.TOGGLE_COMPLETE, itemId: itemId });
 	}, []);
 	const completeAllItems = React.useCallback(
@@ -46,6 +46,10 @@ function ItemList() {
 			}),
 		[state.visibilityStatus]
 	);
+	const removeAllCompletedItems = React.useCallback(
+		() => dispatch({ type: ActionType.REMOVE_ALL_COMPLETED_ITEMS }),
+		[state.todoList]
+	);
 
 	const leftCount = React.useMemo(
 		() => state.todoList.filter((item) => !item.isCompleted).length,
@@ -57,7 +61,7 @@ function ItemList() {
 		else if (state.visibilityStatus === ItemVisibilityStatus.ACTIVE_ONLY)
 			return state.todoList.filter((item) => !item.isCompleted);
 		else return state.todoList;
-	}, [state.visibilityStatus, state.todoList]);
+	}, [state]);
 
 	return (
 		<Container bg="white" w="80%" paddingTop="25px" paddingBottom="25px" boxShadow="lg">
@@ -73,7 +77,7 @@ function ItemList() {
 					<Item
 						fontConfig={fontConfig}
 						itemInfo={itemInfo}
-						toggleItem={completeItem}
+						toggleItem={toggleItem}
 						removeItem={removeItem}
 						key={key}
 					/>
@@ -82,6 +86,7 @@ function ItemList() {
 					leftCount={leftCount}
 					updateVisibilityStatus={setItemVisibilityStatus}
 					itemVisibilityStatus={state.visibilityStatus}
+					removeAllCompletedItems={removeAllCompletedItems}
 				/>
 			</VStack>
 		</Container>

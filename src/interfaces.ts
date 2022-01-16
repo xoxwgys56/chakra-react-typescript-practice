@@ -44,6 +44,7 @@ export interface ItemFooterProps {
 	leftCount: number;
 	updateVisibilityStatus: (status: ItemVisibilityStatus) => void;
 	itemVisibilityStatus: ItemVisibilityStatus;
+	removeAllCompletedItems: () => void;
 }
 
 export interface ItemVisibilityButton {

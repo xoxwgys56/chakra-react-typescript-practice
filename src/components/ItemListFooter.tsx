@@ -7,6 +7,7 @@ export default function ItemListFooter({
 	leftCount,
 	itemVisibilityStatus,
 	updateVisibilityStatus,
+	removeAllCompletedItems,
 }: ItemFooterProps) {
 	// TODO change send value to use `createTheme` for `themeProvider`
 	// TODO remove clear complete text when has no completed item
@@ -56,6 +57,7 @@ export default function ItemListFooter({
 					fontSize={fontConfig.size}
 					fontWeight={fontConfig.weight}
 					color={fontConfig.color}
+					onClick={() => removeAllCompletedItems()}
 				>
 					Clear completed
 				</Button>
