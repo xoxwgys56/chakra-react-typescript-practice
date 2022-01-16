@@ -1,17 +1,21 @@
-import { ColorModeScript } from '@chakra-ui/react';
-import * as React from 'react';
-import ReactDOM from 'react-dom';
-import { App } from './App';
-import reportWebVitals from './reportWebVitals';
-import * as serviceWorker from './serviceWorker';
+import { ColorModeScript } from "@chakra-ui/react";
+import * as React from "react";
+import { App } from "./App";
+import reportWebVitals from "./reportWebVitals";
+import * as serviceWorker from "./serviceWorker";
+import { hydrate, render } from "react-dom";
 
-ReactDOM.render(
+const appElement = (
 	<React.StrictMode>
 		<ColorModeScript />
 		<App />
-	</React.StrictMode>,
-	document.getElementById('root')
+	</React.StrictMode>
 );
+const rootElement = document.getElementById("root");
+if (!rootElement) throw new Error("There is no element include '#root'.");
+
+if (rootElement.hasChildNodes()) hydrate(appElement, rootElement);
+else render(appElement, rootElement);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
